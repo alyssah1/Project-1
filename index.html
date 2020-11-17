@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Dashboard</title>
 
-<!-- Compiled and minified CSS -->
+<!-- Compiled and minified CSS materialize -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 
@@ -18,27 +18,20 @@
 
     <!-- header -->
     <header>
-        <h1>Welcome to the Shopping Dashboard!</h1>
+        <h2>Welcome to the Shopping Dashboard!</h2>
+        <p>Please search for a product down below to price match your product and find the cheapest option!</p>
     </header>
         <!-- creating row for search button -->
         <div class="row">
             <div class="col-3 searchProduct">
                 <h4>Search for a product:</h4>
-                <input type="text" placeholder="Search for a product">
-                <button class="waves-effect waves-light btn-small">Search</button>
+                <input type="text" placeholder="Search for a product" id="productInput">
+                <button class="waves-effect waves-light btn-small" id="runSearchbtn">Search</button>
             </div>
             <div class="col-9 productDisplay">
-                <h4>Where to buy item</h4>
+                <h4>Where to buy the item:</h4>
             </div>
-
-
         </div>
-
-        </div>
-
-
-
-
 
 </div>
 
@@ -51,28 +44,10 @@
 
 
 
+<!--Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- script js -->
+<script src="script.js" type="text/javascript"></script>
 </body>
 </html>
