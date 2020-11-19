@@ -4,6 +4,7 @@ function productSearch(){
 
     $(".button").on("click", function(){
         console.log("clicked")
+        $(".productDisplay").empty();
 
         var productName = $("#product-input").val().trim();
         var apiKey = "api_key=wswjour498ryj8w3bbrwiraw";
@@ -14,13 +15,14 @@ function productSearch(){
             method: "GET"
         })
         .then(function(response){
+            const imagePromise = [];
             for ( var i = 0; i < response.results.length; i++){
                 var products = response.results;
                 
                 console.log(products[i]);
                 
                 var productCard = $("<div>").addClass("card col s12 m12 blue-grey darken-1 white-text");
-                
+                productCard.attr("id", i);
                 var productCardBody = $("<div>").addClass("card-body p-3");
                 
                 var productTitle = $("<span>").addClass("card-title").text(products[i].title);
@@ -32,25 +34,37 @@ function productSearch(){
                 urlDiv.append(productUrl);
                 productCardBody.append(productTitle, productId, productPrice, urlDiv);
                 productCard.append(productCardBody);
+
                 var imageQuerryUrl = "https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/:listing_id/images?api_key=wswjour498ryj8w3bbrwiraw&listing_id=" + products[i].listing_id;
-                $.ajax({
+                
+                imagePromise.push($.ajax({
                     url: imageQuerryUrl,
                     method: "GET"
         
-                }).then(function(imageResponse){
-                    for ( let j = 0; j < imageResponse.results.length; j++);
-                        var images = imageResponse.results;
-                        console.log(imageResponse.results[0]);
+                }))
+                $(".productDisplay").append(productCard);
+            }
+                Promise.all(imagePromise).then(function(imageResponse){
+                    for (let i in imageResponse){
+                        if (imageResponse[i].results.length){
+                            var image = imageResponse[i].results[0].url_570xN;
+                            console.log(image);
                     
-                    var productImage = $("<div>").addClass("card-image");
-                    var imageElement = $("<img>").attr("src", imageResponse.results[0].url_570xN);
-                    productImage.append(imageElement);
-                    productCard.append(productImage);
-                    $(".productDisplay").append(productCard);   
+                            var productImage = $("<div>").addClass("card-image");
+                            var imageElement = $("<img>").attr("src", image);
+                            productImage.append(imageElement);
+                            console.log(productImage)
+                            $("#" + i).append(productImage)
+                            // productCard.append(productImage);
+                          
+                        }
+                    }
+                   
+                      
 
 
                 })
-            }
+            
             
         
     })
