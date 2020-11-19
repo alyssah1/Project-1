@@ -1,0 +1,9 @@
+.card {
+    height: auto;
+    overflow: hidden;
+    padding: 70px;
+}
+
+.get-it {
+    font-size: 30px;
+}
