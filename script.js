@@ -7,8 +7,8 @@ function productSearch(){
         $(".productDisplay").empty();
 
         var productName = $("#product-input").val().trim();
-        var apiKey = "api_key=wswjour498ryj8w3bbrwiraw";
-        var querryUrl = "https://openapi.etsy.com/v2/listings/active?" + apiKey + "&limit=4&tags=" + productName;
+        var apiKey = "api_key=b5c67qnyvumv5dhsuzzzjxbn";
+        var querryUrl = "https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/active?" + apiKey + "&limit=5&tags=" + productName;
 
         $.ajax({
             url: querryUrl,
@@ -35,7 +35,7 @@ function productSearch(){
                 productCardBody.append(productTitle, productId, productPrice, urlDiv);
                 productCard.append(productCardBody);
 
-                var imageQuerryUrl = "https://openapi.etsy.com/v2/listings/:listing_id/images?api_key=wswjour498ryj8w3bbrwiraw&listing_id=" + products[i].listing_id;
+                var imageQuerryUrl = "https://cors-anywhere.herokuapp.com/https://openapi.etsy.com/v2/listings/:listing_id/images?api_key=b5c67qnyvumv5dhsuzzzjxbn&listing_id=" + products[i].listing_id;
                 
                 imagePromise.push($.ajax({
                     url: imageQuerryUrl,
@@ -55,7 +55,7 @@ function productSearch(){
                             productImage.append(imageElement);
                             console.log(productImage)
                             $("#" + i).append(productImage)
-                           
+                            // productCard.append(productImage);
                           
                         }
                     }
